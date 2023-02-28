@@ -1,0 +1,57 @@
+﻿@page "/hra"
+
+<h1>Ahoj vítej v mojí hře</h1>
+
+<input @bind-value="oninput" />
+
+<button @onclick="Hadam">
+    Tip
+</button>
+@*<p>
+<span >@nahodneCislo</span>
+
+</p>*@
+
+<p>
+
+    <span>@vysledek</span>
+</p>
+
+@code
+{
+
+    int nahodneCislo;
+    string? oninput;
+    string? vysledek;
+    bool noveCislo = true;
+
+
+    void Hadam()
+    {
+        if (noveCislo)
+        {
+            Random random = new Random();
+            nahodneCislo = random.Next(1, 10);
+            noveCislo = false;
+        }
+
+        bool cislo = int.TryParse(oninput, out int hadaneCislo);
+
+        if (cislo)
+        {
+            string VetsiMensi = hadaneCislo > nahodneCislo ? "větší" : "menší";
+
+            vysledek = $"Tvoje číslo je {VetsiMensi}";
+
+            if (hadaneCislo == nahodneCislo)
+            {
+                vysledek = "Vyhrál jsi";
+                noveCislo = true;
+            }
+        }
+        else
+        {
+            vysledek = "Zkus zadat číslo";
+        }
+    }
+}
