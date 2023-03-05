@@ -1,13 +1,17 @@
-﻿@page "/hra"
+﻿@page "/HadaciHra"
 
-<h1 class="font-bold text-xl">Ahoj vítej v mojí hře</h1>
 
-<input @bind-value="oninput"  />
+<div class="font-bold text-xl">Ahoj vítej v mojí hře</div>
+<div>Hadej číslo co si myslím</div>
+
+
+<input @bind-value="tip" @bind-value:event="oninput" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg "/>
+
 
 
 
 <button @onclick="Hadam">
-    Tipd
+    Tip
 </button>
 @*<p>
 <span >@nahodneCislo</span>
@@ -23,7 +27,7 @@
 {
 
     int nahodneCislo;
-    string? oninput;
+    string? tip;
     string? vysledek;
     bool noveCislo = true;
 
@@ -37,7 +41,7 @@
             noveCislo = false;
         }
 
-        bool cislo = int.TryParse(oninput, out int hadaneCislo);
+        bool cislo = int.TryParse(tip, out int hadaneCislo);
 
         if (cislo)
         {
