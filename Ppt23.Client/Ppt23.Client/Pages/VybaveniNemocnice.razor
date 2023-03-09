@@ -1,6 +1,27 @@
 ﻿@page "/VybaveniNemocnice"
 
 
+@*<div>@vybaveni1</div>*@
+<div>pocetvybaveni @seznamvybaveni.Count</div>
+
+<button>
+	Pridej nahodne vybaveni
+</button>
+
+<div class="bg-red-500" grid grid-cols-4>
+	@foreach (VybaveniVM vyb in seznamvybaveni)
+	{
+		<div>@vyb.Name</div>
+		<div>
+			<button @onclick="() => smazat(vyb)">smazat </button>
+		</div>
+		
+
+		<vybRox></vybRox>
+
+	}			
+
+</div>
 
 <div class="text-center">
 	<p>VybaveniNemocnice</p>
@@ -8,5 +29,20 @@
 <div class="flex items-center justify-center h-screen"> V současné doběš bohužel nedisponujeme žádným vybavením</div>
 
 @code {
+	//public VybaveniVM vybaveni1 { get; set; } = new() { Name = "ahoj" };
+	//public VybaveniVM vybaveni2 { get; set; } = new() { Name = "ahojcosi" };
 
+	List<VybaveniVM> seznamvybaveni = new();
+
+	public VybaveniNemocnice()
+	{
+		//seznamvybaveni.Add(vybaveni1);
+		//seznamvybaveni.Add(vybaveni2);
+		seznamvybaveni = VybaveniVM.VratRandSeznam(2);
+		//seznamvybaveni[0].IsNameJAck = false; readonly
+	}
+	void smazat(VybaveniVM vyb)
+	{
+		seznamvybaveni.Remove(vyb);
+	}
 }
