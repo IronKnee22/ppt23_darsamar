@@ -2,7 +2,7 @@
 {
 	public class VybaveniVM
 	{
-		Random random = new Random();
+		
 		public string Name { get; set; } = "";
 		public DateTime BuyDate { get; set; }
 		public DateTime LastRevision { get; set; }
@@ -19,6 +19,8 @@
 
 		public static List<VybaveniVM> VratRandSeznam()
 		{
+
+
 			Random random = new Random();
 			List<VybaveniVM> ListVybaveni = new List<VybaveniVM>();
 			for (int i = 0; i < random.Next(5, 10); i++)
@@ -33,11 +35,13 @@
 
 		public DateTime RandomDate(DateTime since)
 		{
-			int between = (DateTime.Now - since).Days;
-			since.AddDays(random.Next(between));
+            Random random = new Random();
+            int between = (DateTime.Now - since).Days;
+
+            since += new TimeSpan(random.Next(0, between), 0, 0, 0);
 
 
-			return since;
+            return since;
 
 
 		}
@@ -45,8 +49,8 @@
 		public string RandomName()
 		{
 
-
-			string letters = "qwertzuiopasdfghjklyxcvbm";
+            Random random = new Random();
+            string letters = "qwertzuiopasdfghjklyxcvbm";
 			string Name = "";
 
 			int lenght = random.Next(5, 10);

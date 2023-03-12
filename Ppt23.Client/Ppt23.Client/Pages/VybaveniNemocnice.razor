@@ -9,48 +9,44 @@
 
 
 
-<div> pocet vybaveni @seznamVybaveni.Count</div>
+<div> pocet vybaveni @SeznamVybaveni.Count</div>
 
 
 
-<button>
-    Pridej nahodne vybaveni
-</button>
+<button  @onclick="noveVybaveni"> Pridej nahodne vybaveni </button>
+
+
 <div class="grid grid-cols-5 border-b-2 border-black ">
     <div class=" w-full h-full">Název</div>
     <div class=" w-full h-full">Datum nákupu</div>
     <div class=" w-full h-full">Datum poslední revize</div>
     <div class=" w-full h-full">Potřebuje revizi?</div>
 </div>
-<div class="grid grid-cols-6 grid">
 
-    @foreach (VybaveniVm vyb in seznamVybaveni)
+
+    @foreach (var vyb in SeznamVybaveni)
     {
-
-        <VybaveRow Vyb="vyb" SmazEventCallback="() => seznamVybaveni.Remove(vyb)">
-
-        </VybaveRow>
-        <VybaveRow Vyb="vyb" RevizeEventCallback="() => vyb.lastRevisionDateTime=DateTime.Now">
-
-        </VybaveRow>
-
+          
+            <div class="grid grid-cols-5 my-1 @((vyb.IsRevisionNeed == true) ? "bg-red-300" : "")">
+            <VybaveRow Vyb="vyb"  
+                SmazEventCallback="() => SeznamVybaveni.Remove(vyb)" 
+                RevizeEventCallback="() => vyb.LastRevision=DateTime.Now">           
+            </VybaveRow>
+        </div>
+            
     }
-</div>
+
 
 
 
 @code {
 
-    List<VybaveniVm> seznamVybaveni;
+    List<VybaveniVM> SeznamVybaveni = new List<VybaveniVM>();
 
-    public Vybaveni_nemocnice()
+    public void noveVybaveni()
     {
-        seznamVybaveni = VybaveniVm.VratRandSeznam();
-
+        SeznamVybaveni.Clear();
+        SeznamVybaveni = VybaveniVM.VratRandSeznam();
     }
-
-
-
-
 
 }
