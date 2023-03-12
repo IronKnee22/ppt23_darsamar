@@ -1,48 +1,56 @@
 ﻿@page "/VybaveniNemocnice"
+@using Ppt23.Client.ViewModels
 
 
-@*<div>@vybaveni1</div>*@
-<div>pocetvybaveni @seznamvybaveni.Count</div>
+<div class="flex justify-center w-full font-sans text-xl">
+    Vítej v nemocnici!
+</div>
+
+
+
+
+<div> pocet vybaveni @seznamVybaveni.Count</div>
+
+
 
 <button>
-	Pridej nahodne vybaveni
+    Pridej nahodne vybaveni
 </button>
+<div class="grid grid-cols-5 border-b-2 border-black ">
+    <div class=" w-full h-full">Název</div>
+    <div class=" w-full h-full">Datum nákupu</div>
+    <div class=" w-full h-full">Datum poslední revize</div>
+    <div class=" w-full h-full">Potřebuje revizi?</div>
+</div>
+<div class="grid grid-cols-6 grid">
 
-<div class="bg-red-500" grid grid-cols-4>
-	@foreach (VybaveniVM vyb in seznamvybaveni)
-	{
-		<div>@vyb.Name</div>
-		<div>
-			<button @onclick="() => smazat(vyb)">smazat </button>
-		</div>
-		
+    @foreach (VybaveniVm vyb in seznamVybaveni)
+    {
 
-		<vybRox></vybRox>
+        <VybaveRow Vyb="vyb" SmazEventCallback="() => seznamVybaveni.Remove(vyb)">
 
-	}			
+        </VybaveRow>
+        <VybaveRow Vyb="vyb" RevizeEventCallback="() => vyb.lastRevisionDateTime=DateTime.Now">
 
+        </VybaveRow>
+
+    }
 </div>
 
-<div class="text-center">
-	<p>VybaveniNemocnice</p>
-</div>
-<div class="flex items-center justify-center h-screen"> V současné doběš bohužel nedisponujeme žádným vybavením</div>
+
 
 @code {
-	//public VybaveniVM vybaveni1 { get; set; } = new() { Name = "ahoj" };
-	//public VybaveniVM vybaveni2 { get; set; } = new() { Name = "ahojcosi" };
 
-	List<VybaveniVM> seznamvybaveni = new();
+    List<VybaveniVm> seznamVybaveni;
 
-	public VybaveniNemocnice()
-	{
-		//seznamvybaveni.Add(vybaveni1);
-		//seznamvybaveni.Add(vybaveni2);
-		seznamvybaveni = VybaveniVM.VratRandSeznam(2);
-		//seznamvybaveni[0].IsNameJAck = false; readonly
-	}
-	void smazat(VybaveniVM vyb)
-	{
-		seznamvybaveni.Remove(vyb);
-	}
+    public Vybaveni_nemocnice()
+    {
+        seznamVybaveni = VybaveniVm.VratRandSeznam();
+
+    }
+
+
+
+
+
 }
