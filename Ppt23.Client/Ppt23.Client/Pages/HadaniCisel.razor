@@ -1,6 +1,6 @@
 ﻿@page "/HadaciHra"
 
-
+<div class="text-center">
 <div class="font-bold text-xl">Ahoj vítej v mojí hře</div>
 <div>Hadej číslo co si myslím</div>
 
@@ -10,8 +10,8 @@
 
 
 
-<button @onclick="Hadam">
-    Tip
+    <button @onclick="Hadam" class="bg-cyan-400 rounded-full px-5 ">
+    Tipnout
 </button>
 @*<p>
 <span >@nahodneCislo</span>
@@ -22,6 +22,7 @@
 
     <span>@vysledek</span>
 </p>
+</div>
 
 @code
 {
