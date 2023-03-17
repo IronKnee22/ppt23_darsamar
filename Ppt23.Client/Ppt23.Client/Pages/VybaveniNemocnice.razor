@@ -27,8 +27,11 @@
           
             <div class="grid grid-cols-5 my-1 @((vyb.IsRevisionNeed == true) ? "bg-red-300" : "")">
             <VybaveRow Vyb="vyb"  
-                SmazEventCallback="() => SeznamVybaveni.Remove(vyb)" 
-                RevizeEventCallback="() => vyb.LastRevision=DateTime.Now">           
+                SmazEventCallback="() => SeznamVybaveni.Remove(vyb)"
+                RevizeEventCallback="() => vyb.LastRevision=DateTime.Now"
+                UpravEventCallback="() => vyb.IsInEditMode = false"
+                EditEventCallback="() => vyb.IsInEditMode = true">
+                             
             </VybaveRow>
         </div>
             

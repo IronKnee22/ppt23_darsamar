@@ -1,18 +1,39 @@
 ﻿@using Ppt23.Client.ViewModels
 
-<div>@Vyb?.Name</div>
-<div>@Vyb?.BuyDate.ToString("dd/MM/yyyy")</div>
-<div>@Vyb?.LastRevision.ToString("dd/MM/yyyy")</div>
-<div>@((Vyb.IsRevisionNeed) ? "ano" : "ne")</div>
-<div>
-    <button class="rounded bg-red-400 p-2" @onclick="() => SmazEventCallback.InvokeAsync()">Smazat</button>
-    <button class="rounded bg-blue-400 p-2" @onclick="() => RevizeEventCallback.InvokeAsync()">Provést revizi</button>
-</div>
+@if (Vyb.IsInEditMode)
+{
+    <div>@Vyb.Name</div>
+    <div>@Vyb.BuyDate.ToString("dd/MM/yyyy")</div>
+    <div>@Vyb.LastRevision.ToString("dd/MM/yyyy")</div>
+    <div>@((Vyb.IsRevisionNeed) ? "ano" : "ne")</div>
+
+    <div>
+        <button class="rounded bg-red-400 p-2" @onclick="() => SmazEventCallback.InvokeAsync()">X</button>
+        <button class="rounded bg-blue-400 p-2" @onclick="() => RevizeEventCallback.InvokeAsync()">Provést revizi</button>
+        <button class="rounded bg-blue-400 p-2" @onclick="() => UpravEventCallback.InvokeAsync()">✏️</button>
+    </div>
+}
+
+@if (!Vyb.IsInEditMode)
+{
+    <div><input type="text" @bind-value=@Vyb.Name /></div>
+    <div><input type="date" @bind-value=@Vyb.BuyDate/></div>
+    <div><input type="date" @bind-value=@Vyb.LastRevision /></div>
+    <div>@((Vyb.IsRevisionNeed) ? "ano" : "ne")</div>
+
+    <button class="rounded bg-red-400 p-2" @onclick="() => EditEventCallback.InvokeAsync()">OK</button>
+}
+
+
+
+
 
 @code {
-    [Parameter] public VybaveniVM? Vyb { get; set; }
+    [Parameter] public VybaveniVM Vyb { get; set; } = null!;
     [Parameter] public EventCallback SmazEventCallback { get; set; }
     [Parameter] public EventCallback RevizeEventCallback { get; set; }
+    [Parameter] public EventCallback UpravEventCallback { get; set; }
+    [Parameter] public EventCallback EditEventCallback { get; set; }
 
 
 }

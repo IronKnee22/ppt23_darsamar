@@ -7,12 +7,14 @@
 		public DateTime BuyDate { get; set; }
 		public DateTime LastRevision { get; set; }
 		public bool IsRevisionNeed { get => LastRevision + new TimeSpan(730, 0, 0, 0) < DateTime.Now; }
+		public bool IsInEditMode { get; set; } = true;
 
 		public VybaveniVM()
 		{
 			this.Name = RandomName();
 			this.BuyDate = RandomDate(new DateTime(2002, 7, 15));
 			this.LastRevision = RandomDate(BuyDate);
+			
 			
 
 		}
