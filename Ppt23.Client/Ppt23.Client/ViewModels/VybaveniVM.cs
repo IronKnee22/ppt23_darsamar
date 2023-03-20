@@ -1,68 +1,99 @@
-﻿namespace Ppt23.Client.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+
+namespace Ppt23.Client.ViewModels
 {
-	public class VybaveniVM
-	{
-		
-		public string Name { get; set; } = "";
-		public DateTime BuyDate { get; set; }
-		public DateTime LastRevision { get; set; }
-		public bool IsRevisionNeed { get => LastRevision + new TimeSpan(730, 0, 0, 0) < DateTime.Now; }
-		public bool IsInEditMode { get; set; } = true;
+    public class VybaveniVM
+    {
+        [Required(ErrorMessage = "Pole \"{0}\" musí něco obsahovat")]
+        [MinLength(5, ErrorMessage = "Pole \"{0}\" musí být alespoň {1} znaků")]
+        [Display(Name = "Název")]
+        public string Name { get; set; } = "";
 
-		public VybaveniVM()
-		{
-			this.Name = RandomName();
-			this.BuyDate = RandomDate(new DateTime(2002, 7, 15));
-			this.LastRevision = RandomDate(BuyDate);
-			
-			
+        public DateTime BuyDate { get; set; }
 
-		}
+        [CustomValidation(typeof(VybaveniVM), nameof(validation))]
+        public DateTime LastRevision { get; set; }
 
-		public static List<VybaveniVM> VratRandSeznam()
-		{
+        public bool IsRevisionNeed { get => LastRevision + new TimeSpan(730, 0, 0, 0) < DateTime.Now; }
+        public bool IsInEditMode { get; set; } = true;
 
+        [Range(0, 10000000, ErrorMessage = "\"{0}\" musí být mezi {1} až {2}")]
+        [Display(Name = "Cena")]
+        public int Cena { get; set; }
 
-			Random random = new Random();
-			List<VybaveniVM> ListVybaveni = new List<VybaveniVM>();
-			for (int i = 0; i < random.Next(5, 10); i++)
-			{
-				VybaveniVM vybavenivm = new VybaveniVM();
+        public static ValidationResult? validation(DateTime LastRev, ValidationContext validationContext)
+        {
+            var Vyb = (VybaveniVM)validationContext.ObjectInstance;
 
-				ListVybaveni.Add(vybavenivm);
-			}
-			return ListVybaveni;
+            if (LastRev < Vyb.BuyDate)
+            {
+                return new ValidationResult("Revize musí být až po koupi");
+            }
+            return ValidationResult.Success;
+        }
 
-		}
+        public VybaveniVM()
+        {
+            this.Name = RandomName();
+            this.BuyDate = RandomDate(new DateTime(2002, 7, 15));
+            this.LastRevision = RandomDate(BuyDate);
+            this.Cena = Random.Shared.Next(10000000);
+        }
+        public VybaveniVM Copy()
+        {
+            VybaveniVM to = new();
+            to.BuyDate = BuyDate;
+            to.LastRevision = LastRevision;
+            to.IsInEditMode = IsInEditMode;
+            to.Name = Name;
+            to.Cena = Cena;
 
-		public DateTime RandomDate(DateTime since)
-		{
-            Random random = new Random();
+            return to;
+        }
+        public void MapTo(VybaveniVM? to)
+        {
+            if (to == null) return;
+            to.BuyDate = BuyDate;
+            to.LastRevision = LastRevision;
+            to.Name = Name;
+            to.Cena = Cena;
+        }
+
+        public static List<VybaveniVM> VratRandSeznam()
+        {
+            List<VybaveniVM> ListVybaveni = new List<VybaveniVM>();
+            for (int i = 0; i < Random.Shared.Next(5, 10); i++)
+            {
+                VybaveniVM vybavenivm = new VybaveniVM();
+
+                ListVybaveni.Add(vybavenivm);
+            }
+            return ListVybaveni;
+        }
+
+        public DateTime RandomDate(DateTime since)
+        {
             int between = (DateTime.Now - since).Days;
 
-            since += new TimeSpan(random.Next(0, between), 0, 0, 0);
-
+            since += new TimeSpan(Random.Shared.Next(0, between), 0, 0, 0);
 
             return since;
+        }
 
-
-		}
-
-		public string RandomName()
-		{
-
-            Random random = new Random();
+        public string RandomName()
+        {
             string letters = "qwertzuiopasdfghjklyxcvbm";
-			string Name = "";
+            string Name = "";
 
-			int lenght = random.Next(5, 10);
-			for (int i = 0; i < lenght; i++)
-			{
-				int rndpositon = random.Next(letters.Length);
-
-				Name += letters[rndpositon];
-			}
-			return Name;
-		}
-	}
+            int lenght = Random.Shared.Next(5, 10);
+            for (int i = 0; i < lenght; i++)
+            {
+                int rndpositon = Random.Shared.Next(letters.Length);
+                Name += letters[rndpositon];
+            }
+            return Name;
+        }
+    }
 }

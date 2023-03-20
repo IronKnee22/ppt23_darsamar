@@ -1,47 +1,31 @@
 ﻿@page "/VybaveniNemocnice"
 @using Ppt23.Client.ViewModels
 
-
-
-
-
-
-
 <div> pocet vybaveni @SeznamVybaveni.Count</div>
-
-
 
 <button @onclick="noveVybaveni" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full"> Přidej náhodné vybavení </button>
 
-
-<div class="grid grid-cols-5 border-b-2 border-black ">
+<div class="grid grid-cols-6 border-b-2 border-black ">
     <div class=" w-full h-full">Název</div>
     <div class=" w-full h-full">Datum nákupu</div>
     <div class=" w-full h-full">Datum poslední revize</div>
     <div class=" w-full h-full">Potřebuje revizi?</div>
+    <div class=" w-full h-full">Cena</div>
 </div>
 
-
-    @foreach (var vyb in SeznamVybaveni)
-    {
-          
-            <div class="grid grid-cols-5 my-1 @((vyb.IsRevisionNeed == true) ? "bg-red-300" : "")">
-            <VybaveRow Vyb="vyb"  
-                SmazEventCallback="() => SeznamVybaveni.Remove(vyb)"
-                RevizeEventCallback="() => vyb.LastRevision=DateTime.Now"
-                UpravEventCallback="() => vyb.IsInEditMode = false"
-                EditEventCallback="() => vyb.IsInEditMode = true">
-                             
-            </VybaveRow>
-        </div>
-            
-    }
-
-
-
+@foreach (var vyb in SeznamVybaveni)
+{
+    <div class="grid grid-cols-6 my-1 @((vyb.IsRevisionNeed == true) ? "bg-red-300" : "")">
+        <VybaveRow Vyb="vyb"  
+            SmazEventCallback="() => SeznamVybaveni.Remove(vyb)"
+            RevizeEventCallback="() => vyb.LastRevision=DateTime.Now"
+            UpravEventCallback="() => vyb.IsInEditMode = false"
+            EditEventCallback="() => vyb.IsInEditMode = true">
+        </VybaveRow>
+    </div>
+}
 
 @code {
-
     List<VybaveniVM> SeznamVybaveni = new List<VybaveniVM>();
 
     public void noveVybaveni()
@@ -49,5 +33,4 @@
         SeznamVybaveni.Clear();
         SeznamVybaveni = VybaveniVM.VratRandSeznam();
     }
-
 }
