@@ -3,7 +3,13 @@
 
 <div> pocet vybaveni @SeznamVybaveni.Count</div>
 
+<button @onclick="noveVybaveniseznam" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full"> Přidej seznam vybavení </button>
 <button @onclick="noveVybaveni" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full"> Přidej náhodné vybavení </button>
+
+<VybaveRow Vyb=newModel>
+    <button @onclick="() => {SeznamVybaveni.Insert(0,newModel); newModel.IsInEditMode = false; isInNewMode = false;}" class="twbtn bg-teal-500">Přidej</button>
+    <button @onclick="() => isInNewMode = false" class="twbtn bg-yellow-500">Zrušit</button>
+</VybaveRow>
 
 <div class="grid grid-cols-6 border-b-2 border-black ">
     <div class=" w-full h-full">Název</div>
@@ -16,7 +22,7 @@
 @foreach (var vyb in SeznamVybaveni)
 {
     <div class="grid grid-cols-6 my-1 @((vyb.IsRevisionNeed == true) ? "bg-red-300" : "")">
-        <VybaveRow Vyb="vyb"  
+        <VybaveRow Vyb=vyb  
             SmazEventCallback="() => SeznamVybaveni.Remove(vyb)"
             RevizeEventCallback="() => vyb.LastRevision=DateTime.Now"
             UpravEventCallback="() => vyb.IsInEditMode = false"
@@ -25,10 +31,22 @@
     </div>
 }
 
+
+
+
+
 @code {
     List<VybaveniVM> SeznamVybaveni = new List<VybaveniVM>();
 
+    public bool isInNewMode = false;
+    VybaveniVM? newModel;
+
     public void noveVybaveni()
+    {
+        isInNewMode = true;
+    }
+
+    public void noveVybaveniseznam()
     {
         SeznamVybaveni.Clear();
         SeznamVybaveni = VybaveniVM.VratRandSeznam();

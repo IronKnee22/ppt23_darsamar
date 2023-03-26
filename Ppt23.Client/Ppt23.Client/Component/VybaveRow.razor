@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
-@using Ppt23.Client.ViewModels
+
 
 @if (Vyb.IsInEditMode)
 {
@@ -34,6 +34,7 @@
         </div>
     </EditForm>   
 }
+
 
 @code {
     [Parameter] public EventCallback SmazEventCallback { get; set; }

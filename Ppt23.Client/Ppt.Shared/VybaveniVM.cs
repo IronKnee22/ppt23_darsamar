@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 
-namespace Ppt23.Client.ViewModels
+
+namespace Ppt.Shered.ViewModels
 {
     public class VybaveniVM
     {
@@ -11,6 +11,8 @@ namespace Ppt23.Client.ViewModels
         [Display(Name = "Název")]
         public string Name { get; set; } = "";
 
+        public Guid Id { get; set; }
+        
         public DateTime BuyDate { get; set; }
 
         [CustomValidation(typeof(VybaveniVM), nameof(validation))]
