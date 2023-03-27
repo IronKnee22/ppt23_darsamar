@@ -12,18 +12,26 @@ namespace Ppt.Shered.ViewModels
         public string Name { get; set; } = "";
 
         public Guid Id { get; set; }
-        
+
         public DateTime BuyDate { get; set; }
 
         [CustomValidation(typeof(VybaveniVM), nameof(validation))]
         public DateTime LastRevision { get; set; }
 
         public bool IsRevisionNeed { get => LastRevision + new TimeSpan(730, 0, 0, 0) < DateTime.Now; }
-        public bool IsInEditMode { get; set; } = true;
 
         [Range(0, 10000000, ErrorMessage = "\"{0}\" musí být mezi {1} až {2}")]
         [Display(Name = "Cena")]
         public int Cena { get; set; }
+
+        public VybaveniVM()
+        {
+            this.Name = "";
+            Id = Guid.NewGuid();
+            this.BuyDate = RandomDate(new DateTime(2002, 7, 15));
+            this.LastRevision = RandomDate(BuyDate);
+            this.Cena = Random.Shared.Next(10000000);
+        }
 
         public static ValidationResult? validation(DateTime LastRev, ValidationContext validationContext)
         {
@@ -35,21 +43,12 @@ namespace Ppt.Shered.ViewModels
             }
             return ValidationResult.Success;
         }
-
-        public VybaveniVM()
-        {
-            this.Name = RandomName();
-            this.BuyDate = RandomDate(new DateTime(2002, 7, 15));
-            this.LastRevision = RandomDate(BuyDate);
-            this.Cena = Random.Shared.Next(10000000);
-        }
         public VybaveniVM Copy()
         {
             VybaveniVM to = new();
+            to.Name = Name;
             to.BuyDate = BuyDate;
             to.LastRevision = LastRevision;
-            to.IsInEditMode = IsInEditMode;
-            to.Name = Name;
             to.Cena = Cena;
 
             return to;
@@ -57,9 +56,9 @@ namespace Ppt.Shered.ViewModels
         public void MapTo(VybaveniVM? to)
         {
             if (to == null) return;
+            to.Name = Name;
             to.BuyDate = BuyDate;
             to.LastRevision = LastRevision;
-            to.Name = Name;
             to.Cena = Cena;
         }
 
@@ -70,6 +69,7 @@ namespace Ppt.Shered.ViewModels
             {
                 VybaveniVM vybavenivm = new VybaveniVM();
 
+                vybavenivm.Name = RandomName();
                 ListVybaveni.Add(vybavenivm);
             }
             return ListVybaveni;
@@ -84,7 +84,7 @@ namespace Ppt.Shered.ViewModels
             return since;
         }
 
-        public string RandomName()
+        public static string RandomName()
         {
             string letters = "qwertzuiopasdfghjklyxcvbm";
             string Name = "";

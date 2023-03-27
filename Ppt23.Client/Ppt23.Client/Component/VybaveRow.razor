@@ -1,57 +1,67 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
 
+<div class="grid grid-cols-6 @((Vyb.IsRevisionNeed) ? "bg-red-400 hover:bg-red-400" : "")">
 
-@if (Vyb.IsInEditMode)
-{
-    <div>@Vyb.Name</div>
-    <div>@Vyb.BuyDate.ToString("dd/MM/yyyy")</div>
-    <div>@Vyb.LastRevision.ToString("dd/MM/yyyy")</div>
-    <div>@((Vyb.IsRevisionNeed) ? "ano" : "ne")</div>
-    <div>@Vyb.Cena Kč</div>
-
-    <div class="text-center">
-        <button class="rounded bg-red-400 p-2" @onclick="() => SmazEventCallback.InvokeAsync()">🚮</button>
-        <button class="rounded bg-blue-400 p-2" @onclick="() => RevizeEventCallback.InvokeAsync()">👨‍🔧</button>
-        <button class="rounded border-2 border-blue-400 p-2" @onclick="() => UpravEventCallback.InvokeAsync()">✏️</button>
-    </div>
-}
-
-@if (!Vyb.IsInEditMode)
-{   
-    <EditForm class="col-span-6" Model=editingItem OnValidSubmit="() =>  TurnOffEdit(true)">
-    <DataAnnotationsValidator />
-        <div class="grid grid-cols-6 my-1">
-            <div><InputText @bind-Value=@editingItem.Name /><ValidationMessage For="() => editingItem.Name" /></div>
-            <div><InputDate @bind-Value=@editingItem.BuyDate/></div>
-            <div><InputDate @bind-Value=@editingItem.LastRevision /><ValidationMessage For="() => editingItem.LastRevision" /></div>
+    @if (Vyb != null && !IsInEditMode)
+    {
+            <div>@Vyb.Name</div>
+            <div>@Vyb.BuyDate.ToString("dd/MM/yyyy")</div>
+            <div>@Vyb.LastRevision.ToString("dd/MM/yyyy")</div>
             <div>@((Vyb.IsRevisionNeed) ? "ano" : "ne")</div>
-            <div><InputNumber @bind-Value=@editingItem.Cena Kč ParsingErrorMessage="Pole Cena musí něco obsahovat"/><ValidationMessage For="() => editingItem.Cena" /></div>
+            <div>@Vyb.Cena Kč</div>
 
             <div class="text-center">
-                    <button type="submit" class="rounded border-2 border-blue-400 p-2" >💾</button>
-                    <button type="button" class="rounded border-2 border-blue-400 p-2" @onclick="() => TurnOffEdit(false)">❌</button>
+                <button class="rounded bg-red-600 p-2" @onclick="() => SmazEventCallback.InvokeAsync()">🚮</button>
+                <button class="rounded bg-blue-600 p-2" @onclick="() => RevizeEventCallBack.InvokeAsync()">👨‍🔧</button>
+                <button class="rounded border-2 border-yellow-400 p-2" @onclick="() => TurnOnEdit()">✏️</button>
             </div>
-        </div>
-    </EditForm>   
-}
+    }
+    else if (editingItem != null && IsInEditMode)
+    {
+            <EditForm class="col-span-6" Model=editingItem OnValidSubmit="() => TurnOffEdit(true)">
+                <DataAnnotationsValidator />
+                    <div class="grid grid-cols-6 my-1">
+                    <div><InputText class="bg-green-100 border rounded" @bind-Value=@editingItem.Name /><ValidationMessage For="() => editingItem.Name" /></div>
+                    <div><InputDate class="bg-blue-100 border rounded" @bind-Value=@editingItem.BuyDate /></div>
+                    <div><InputDate class="bg-blue-100 border rounded" @bind-Value=@editingItem.LastRevision /><ValidationMessage For="() => editingItem.LastRevision" /></div>
+                    <div>@((editingItem.IsRevisionNeed) ? "ano" : "ne")</div>
+                    <div><InputNumber class="bg-orange-100 border rounded" @bind-Value=@editingItem.Cena ParsingErrorMessage="Pole Cena musí něco obsahovat" /><ValidationMessage For="() => editingItem.Cena" /></div>
+
+                @if (ChildContent == null)
+                {
+                        <div class="text-center">      
+                            <button type="submit" class="rounded border-2 border-blue-400 p-2" >💾</button>
+                            <button type="button" class="rounded border-2 border-blue-400 p-2" @onclick="() => TurnOffEdit(false)">❌</button>
+                        </div>        
+                }
+                else
+                {
+                    @ChildContent
+                }
+                </div>
+            </EditForm>
+    }
+</div>
 
 
 @code {
     [Parameter] public EventCallback SmazEventCallback { get; set; }
-    [Parameter] public EventCallback RevizeEventCallback { get; set; }
-    [Parameter] public EventCallback UpravEventCallback { get; set; }
-    [Parameter] public EventCallback EditEventCallback { get; set; }
+    [Parameter] public EventCallback RevizeEventCallBack { get; set; }
+    [Parameter] public EventCallback EditDoneCallback { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool IsInEditMode { get; set; } = false;
+
+    VybaveniVM? _Vyb;
     VybaveniVM? editingItem;
-    VybaveniVM? _Item;
-    
+
     [Parameter]
     public VybaveniVM? Vyb
     {
-        get => _Item;
+        get => _Vyb;
         set
         {
-            _Item = value;
-            if (value != null && value.IsInEditMode)
+            _Vyb = value;
+            if (value != null && IsInEditMode)
             {
                 TurnOnEdit();
             }
@@ -62,7 +72,7 @@
     {
         if (Vyb != null)
         {
-            Vyb.IsInEditMode = true;
+            IsInEditMode = true;
             editingItem = Vyb.Copy();
         }
     }
@@ -74,10 +84,10 @@
             editingItem?.MapTo(Vyb);
         }
         if (Vyb is not null)
-            Vyb.IsInEditMode = false;
-        editingItem = null;
-        EditEventCallback.InvokeAsync(success);
-    }
-}
+            IsInEditMode = false;
 
-   
+        editingItem = null;
+        EditDoneCallback.InvokeAsync(success);
+    }
+
+}
