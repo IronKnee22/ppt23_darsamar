@@ -39,6 +39,31 @@ app.MapDelete("/vybaveni/{Id}", (Guid Id) =>
 }
 );
 
+app.MapPut("/vybaveni/{Id}", (VybaveniVM upravenyModel, Guid Id) =>
+{
+    var vybranyModel = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
+    if (vybranyModel == null)
+    {
+        return Results.NotFound("Položka nalezena");
+    }
+
+    else
+    {
+        upravenyModel.Id = Id;
+        int index = SeznamVybaveni.IndexOf(vybranyModel);
+
+        SeznamVybaveni.Remove(vybranyModel);
+        SeznamVybaveni.Insert(index, upravenyModel);
+
+        return Results.Ok();
+    }
+});
+
+app.MapGet("/vybaveni/{Id}", (Guid Id) =>
+{
+    VybaveniVM? nalezeny = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
+    return nalezeny;
+});
 
 
 
