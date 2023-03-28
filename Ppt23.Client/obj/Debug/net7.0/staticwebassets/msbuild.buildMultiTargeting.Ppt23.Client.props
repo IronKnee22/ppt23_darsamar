@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Ppt23.Client.props" />
+</Project>
