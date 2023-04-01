@@ -481,11 +481,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\Ppt.Api\\Ppt.Api.csproj",
+      "projectUniqueName": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
       "projectName": "Ppt.Api",
-      "projectPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\Ppt.Api\\Ppt.Api.csproj",
+      "projectPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
       "packagesPath": "C:\\Users\\marek\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\Ppt.Api\\obj\\",
+      "outputPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marek\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -502,8 +502,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\Ppt.Shared\\Ppt.Shared.csproj": {
-              "projectPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\Ppt.Shared\\Ppt.Shared.csproj"
+            "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
+              "projectPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj"
             }
           }
         }

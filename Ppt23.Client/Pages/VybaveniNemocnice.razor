@@ -1,4 +1,14 @@
 ﻿@page "/VybaveniNemocnice"
+@inject HttpClient Http
+
+
+
+@if(SeznamVybaveni is null)
+{
+    <div class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+  <div class=" border-t-transparent border-solid animate-spin  rounded-full border-teal-600 border-8 h-16 w-16"></div>
+    </div>
+}
 
 <div> pocet vybaveni @SeznamVybaveni.Count</div>
 
@@ -30,8 +40,8 @@
 @foreach (var vyb in SeznamVybaveni)
 {
         <VybaveRow Vyb="vyb"
-       SmazEventCallback="() => SeznamVybaveni.Remove(vyb)"
-       RevizeEventCallBack="() => vyb.LastRevision = DateTime.Now">
+            SmazEventCallback="() => DeleteVybaveni(vyb)"
+            RevizeEventCallBack="() => vyb.LastRevision = DateTime.Now">
         </VybaveRow>
 }
 
@@ -49,8 +59,32 @@
 
     protected override async Task OnInitializedAsync()
     {
-        SeznamVybaveni.Clear();
-        SeznamVybaveni = VybaveniVM.VratRandSeznam();
+        SeznamVybaveni = await Http.GetFromJsonAsync<List<VybaveniVM>>("vybaveni");
+
+
+        await Task.Delay(1000);
+        //SeznamVybaveni.Clear();
+        //SeznamVybaveni = VybaveniVM.VratRandSeznam();
+
+
     }
+
+    public async void DeleteVybaveni(VybaveniVM vyb)
+    {
+
+
+
+
+        var odpoved = await Http.DeleteAsync($"vybaveni/{vyb.Id}");
+        if (odpoved.IsSuccessStatusCode)
+            SeznamVybaveni.Remove(vyb);
+
+    }
+
+    
+
+    
+
+    
 
 }

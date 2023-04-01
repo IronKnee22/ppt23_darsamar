@@ -10,3 +10,15 @@ C:\Users\marek\Documents\ppt23_darsamar\Ppt23.Client\Ppt.Shared\obj\Debug\net7.0
 C:\Users\marek\Documents\ppt23_darsamar\Ppt23.Client\Ppt.Shared\obj\Debug\net7.0\refint\Ppt.Shared.dll
 C:\Users\marek\Documents\ppt23_darsamar\Ppt23.Client\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.pdb
 C:\Users\marek\Documents\ppt23_darsamar\Ppt23.Client\Ppt.Shared\obj\Debug\net7.0\ref\Ppt.Shared.dll
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\bin\Debug\net7.0\Ppt.Shared.deps.json
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\bin\Debug\net7.0\Ppt.Shared.dll
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\bin\Debug\net7.0\Ppt.Shared.pdb
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.csproj.AssemblyReference.cache
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.AssemblyInfoInputs.cache
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.AssemblyInfo.cs
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.csproj.CoreCompileInputs.cache
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.dll
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\refint\Ppt.Shared.dll
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.pdb
+C:\Users\marek\Documents\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\ref\Ppt.Shared.dll

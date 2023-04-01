@@ -1,4 +1,4 @@
-using Ppt.Shered.ViewModels;
+﻿using Ppt.Shered.ViewModels;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,8 +6,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
 
+//někde za definicí proměnné app
+
+
+
+
+builder.Services.AddCors(corsOptions => corsOptions.AddDefaultPolicy(policy =>
+    policy.WithOrigins("https://localhost:1111")
+    .WithMethods("GET","DELETE")
+    .AllowAnyHeader()
+));
+var app = builder.Build();
+app.UseCors();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -33,7 +44,7 @@ app.MapDelete("/vybaveni/{Id}", (Guid Id) =>
 {
     var vybranyModel = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
     if (vybranyModel == null)
-        return Results.NotFound("Polo�ka nalezena");
+        return Results.NotFound("Položka nalezena");
     SeznamVybaveni.Remove(vybranyModel);
     return Results.Ok();
 }
@@ -44,7 +55,7 @@ app.MapPut("/vybaveni/{Id}", (VybaveniVM upravenyModel, Guid Id) =>
     var vybranyModel = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
     if (vybranyModel == null)
     {
-        return Results.NotFound("Polo�ka nalezena");
+        return Results.NotFound("Položka nalezena");
     }
 
     else
@@ -65,6 +76,7 @@ app.MapGet("/vybaveni/{Id}", (Guid Id) =>
     return nalezeny;
 });
 
+ 
 
 
 
