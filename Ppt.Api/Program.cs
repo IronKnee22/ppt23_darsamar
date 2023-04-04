@@ -1,4 +1,6 @@
 ﻿using Ppt.Shered.ViewModels;
+using System.Linq;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -65,6 +67,20 @@ app.MapPut("/vybaveni/{Id}", (VybaveniVM upravenyModel, Guid Id) => /*update vyb
 app.MapGet("/vybaveni/{Id}", (Guid Id) =>   /*Pomocí ID získán jedno vybavení*/
 {
     VybaveniVM? nalezeny = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
+    return nalezeny;
+});
+
+app.MapGet("/search/{con}", (string con) =>   /*Pomocí ID získán jedno vybavení*/
+{
+    List<VybaveniVM?> nalezeny = new List<VybaveniVM?>();
+    foreach (var item in SeznamVybaveni)
+    {
+        if (item.Name.Contains(con))
+        {
+            nalezeny.Add(item);
+        }
+
+    }
     return nalezeny;
 });
 

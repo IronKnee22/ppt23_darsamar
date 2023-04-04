@@ -229,15 +229,15 @@
       "mscorlib.dll": "sha256-kgowZLZGyceaJo4bHvVY1kmm1GJuawa5rPO1RCfNYWc=",
       "netstandard.dll": "sha256-2\/SuexPFW8hizUgbgPcchYHfG\/zmGzzMN6ESSyefPRQ=",
       "System.Private.CoreLib.dll": "sha256-mcywrbK0VZXiOvZ4dxU1ocaPZFplCRSIPQ\/wFikcrus=",
-      "Ppt.Shared.dll": "sha256-vu6KRZBcHmsCuD0XyXQQJ2lGk4laaqCi5cAVCCiE+fg=",
-      "Ppt23.Client.dll": "sha256-BjjD63r8p3X1wHAIN0qbhQh9wkGtOVdpXMj9t3DhJvc="
+      "Ppt.Shared.dll": "sha256-1wv9PXYjsT5Q3nW\/GQA0tLMcgNvzkSBdRmEgVL+KsEg=",
+      "Ppt23.Client.dll": "sha256-r9x0SWRAA2ETvw4hjpD47IZSMZWGHQBgz5PLuGVNlmw="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Ppt.Shared.pdb": "sha256-Ij03OMfvPqzGwrt5rNB8yWu5ah91nQMSRVgEPh2AsUo=",
-      "Ppt23.Client.pdb": "sha256-3B8BrU26Qb4MOC3ySyJ9XpV7kvxOjCAXN2LCVPHHuvI="
+      "Ppt.Shared.pdb": "sha256-6kfl20nbLinNNVrCwHtbUhZQBhC4yD+GnFxrmVO0JgU=",
+      "Ppt23.Client.pdb": "sha256-QyW3QhpdoOgVYYQrSFwL\/Xh10dcbLpC3XTh1O5TVm2U="
     },
     "runtime": {
       "dotnet.7.0.3.s9lvw74c95.js": "sha256-DxGvmbtUa6hGJpk3VyMEbkPZ653qWbQkh8X4ZVM9TWM=",

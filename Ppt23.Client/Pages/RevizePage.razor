@@ -1,0 +1,22 @@
+﻿@page "/revize"
+
+@inject HttpClient Http
+<div>ahoj</div>
+@*<div class="text-green-600">@routeParam</div>*@
+
+
+<input type="text" @bind-value="inputValue" @bind-value:event="oninput" />
+
+<button @onclick="vyhledat">Vyhledat</button>
+
+@code {
+    [Parameter]
+    public string routeParam { get; set; }
+
+    private string? inputValue { get; set; }
+
+    private void vyhledat()
+    {
+
+    }
+}
