@@ -8,7 +8,7 @@
       "launchBrowser": true,
       "lunchurl": "VybaveniNemocnice",
       "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
-      "applicationUrl": "https://localhost:1111;http://localhost:5220",
+      "applicationUrl": "https://localhost:1111",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

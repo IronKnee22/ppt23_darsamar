@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj": {}
+    "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj": {
+    "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
         "projectName": "Ppt.Api",
-        "projectPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
-        "packagesPath": "C:\\Users\\marek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Api\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
-                "projectPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj"
+              "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
+                "projectPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj"
               }
             }
           }
@@ -76,17 +76,17 @@
         }
       }
     },
-    "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
+    "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
         "projectName": "Ppt.Shared",
-        "projectPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
-        "packagesPath": "C:\\Users\\marek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt.Shared\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

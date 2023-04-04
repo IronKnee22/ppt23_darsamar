@@ -1,25 +1,18 @@
 ﻿using Ppt.Shered.ViewModels;
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-//někde za definicí proměnné app
-
-
-
-
 builder.Services.AddCors(corsOptions => corsOptions.AddDefaultPolicy(policy =>
     policy.WithOrigins("https://localhost:1111")
-    .WithMethods("GET","DELETE")
+    .WithMethods("GET","DELETE","PUT","POST") /*použité endpoity*/
     .AllowAnyHeader()
 ));
+
 var app = builder.Build();
 app.UseCors();
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -27,20 +20,20 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-List<VybaveniVM> SeznamVybaveni = VybaveniVM.VratRandSeznam();
+List<VybaveniVM> SeznamVybaveni = VybaveniVM.VratRandSeznam();  //základní gerenování seznamu
 
 app.MapGet("/vybaveni", () =>
 {
     return SeznamVybaveni;
 });
 
-app.MapPost("/vybaveni", (VybaveniVM prichoziModel) =>
+app.MapPost("/vybaveni", (VybaveniVM prichoziModel) => /*nové vybavení*/
 {
     prichoziModel.Id = Guid.NewGuid();
     SeznamVybaveni.Insert(0, prichoziModel);
 });
 
-app.MapDelete("/vybaveni/{Id}", (Guid Id) =>
+app.MapDelete("/vybaveni/{Id}", (Guid Id) =>    /*smazání vybavení*/
 {
     var vybranyModel = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
     if (vybranyModel == null)
@@ -50,7 +43,7 @@ app.MapDelete("/vybaveni/{Id}", (Guid Id) =>
 }
 );
 
-app.MapPut("/vybaveni/{Id}", (VybaveniVM upravenyModel, Guid Id) =>
+app.MapPut("/vybaveni/{Id}", (VybaveniVM upravenyModel, Guid Id) => /*update vybavení*/
 {
     var vybranyModel = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
     if (vybranyModel == null)
@@ -59,27 +52,21 @@ app.MapPut("/vybaveni/{Id}", (VybaveniVM upravenyModel, Guid Id) =>
     }
 
     else
-    {
-        upravenyModel.Id = Id;
+    { 
         int index = SeznamVybaveni.IndexOf(vybranyModel);
 
         SeznamVybaveni.Remove(vybranyModel);
         SeznamVybaveni.Insert(index, upravenyModel);
 
-        return Results.Ok();
+        return Results.Ok(upravenyModel);
     }
 });
 
-app.MapGet("/vybaveni/{Id}", (Guid Id) =>
+app.MapGet("/vybaveni/{Id}", (Guid Id) =>   /*Pomocí ID získán jedno vybavení*/
 {
     VybaveniVM? nalezeny = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
     return nalezeny;
 });
-
- 
-
-
-
 
 app.Run();
 

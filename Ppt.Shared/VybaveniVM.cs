@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
-
 namespace Ppt.Shered.ViewModels
 {
     public class VybaveniVM

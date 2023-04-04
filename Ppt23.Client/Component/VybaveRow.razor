@@ -1,5 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
 
+@if (Vyb is null)
+{
+            <div class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+                <div class=" border-t-transparent border-solid animate-spin  rounded-full border-cyan-600 border-8 h-16 w-16"></div>
+            </div>
+    return;
+}
+
 <div class="grid grid-cols-6 @((Vyb.IsRevisionNeed) ? "bg-red-400 hover:bg-red-400" : "")">
 
     @if (Vyb != null && !IsInEditMode)
@@ -13,12 +21,13 @@
             <div class="text-center">
                 <button class="rounded bg-red-600 p-2" @onclick="() => SmazEventCallback.InvokeAsync()">🚮</button>
                 <button class="rounded bg-blue-600 p-2" @onclick="() => RevizeEventCallBack.InvokeAsync()">👨‍🔧</button>
-                <button class="rounded border-2 border-yellow-400 p-2" @onclick="() => TurnOnEdit()">✏️</button>
+                <button class="rounded border-2 border-yellow-600 p-2" @onclick="() => TurnOnEdit()">🛠</button>
+                <a class="rounded border-2 border-blue-600 p-2" href="vybaveni/{@Vyb.Id}">ℹ️</a>
             </div>
     }
     else if (editingItem != null && IsInEditMode)
     {
-            <EditForm class="col-span-6" Model=editingItem OnValidSubmit="() => TurnOffEdit(true)">
+                <EditForm class="col-span-6" Model=editingItem OnValidSubmit="() => TurnOffEdit(true)">
                 <DataAnnotationsValidator />
                     <div class="grid grid-cols-6 my-1">
                     <div><InputText class="bg-green-100 border rounded" @bind-Value=@editingItem.Name /><ValidationMessage For="() => editingItem.Name" /></div>
@@ -31,7 +40,7 @@
                 {
                         <div class="text-center">      
                             <button type="submit" class="rounded border-2 border-blue-400 p-2" >💾</button>
-                            <button type="button" class="rounded border-2 border-blue-400 p-2" @onclick="() => TurnOffEdit(false)">❌</button>
+                            <button type="button" class="rounded border-2 border-blue-400 p-2" @onclick="() => IsInEditMode = false">❌</button>
                         </div>        
                 }
                 else
@@ -48,7 +57,9 @@
     [Parameter] public EventCallback SmazEventCallback { get; set; }
     [Parameter] public EventCallback RevizeEventCallBack { get; set; }
     [Parameter] public EventCallback EditDoneCallback { get; set; }
+
     [Parameter] public RenderFragment? ChildContent { get; set; }
+
     [Parameter] public bool IsInEditMode { get; set; } = false;
 
     VybaveniVM? _Vyb;
@@ -85,9 +96,7 @@
         }
         if (Vyb is not null)
             IsInEditMode = false;
-
         editingItem = null;
         EditDoneCallback.InvokeAsync(success);
     }
-
 }

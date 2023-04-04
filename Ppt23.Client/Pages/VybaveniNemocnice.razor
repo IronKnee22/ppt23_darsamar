@@ -3,82 +3,98 @@
 
 
 
-@if(SeznamVybaveni is null)
+
+@if (SeznamVybaveni is null)
 {
-    <div class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
-  <div class=" border-t-transparent border-solid animate-spin  rounded-full border-teal-600 border-8 h-16 w-16"></div>
+        <div class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+            <div class=" border-t-transparent border-solid animate-spin  rounded-full border-cyan-600 border-8 h-16 w-16"></div>
+        </div>
+    return;
+}
+else{
+    <div> pocet vybaveni @SeznamVybaveni.Count</div>
+    
+    <button @onclick="() => {isInNewMode = true; newModel = new();}" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full">Nové vybavení</button>
+    
+    <div class="grid grid-cols-6 border-b-2 border-black ">
+        <div class=" w-full h-full">Název</div>
+        <div class=" w-full h-full">Datum nákupu</div>
+        <div class=" w-full h-full">Datum poslední revize</div>
+        <div class=" w-full h-full">Potřebuje revizi?</div>
+        <div class=" w-full h-full">Cena</div>
     </div>
-}
-
-<div> pocet vybaveni @SeznamVybaveni.Count</div>
-
-<button @onclick="noveVybaveniSeznam" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full">Generovat nové vybavení</button>
-<button @onclick="() => {isInNewMode = true; newModel = new();}" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full">Nové vybavení</button>
-
-<div class="grid grid-cols-6 border-b-2 border-black ">
-    <div class=" w-full h-full">Název</div>
-    <div class=" w-full h-full">Datum nákupu</div>
-    <div class=" w-full h-full">Datum poslední revize</div>
-    <div class=" w-full h-full">Potřebuje revizi?</div>
-    <div class=" w-full h-full">Cena</div>
-</div>
-
-@if (isInNewMode)
-{
-    ArgumentNullException.ThrowIfNull(newModel);
-
-            <VybaveRow IsInEditMode=true Vyb="newModel"
-           EditDoneCallback="() => {SeznamVybaveni.Insert(0,newModel); isInNewMode = false;}"> 
-
-                <div class="grid grid-cols-2 p-1">
-                    <button type="submit" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full">Přidat</button>
-                    <button type="button" @onclick="() => isInNewMode = false" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full">Odebrat</button>
-                </div>
+    
+    @if (isInNewMode)
+    {
+        ArgumentNullException.ThrowIfNull(newModel);
+                <div>Aby se přidalo nové vybavení je nutno po přidání refreshovat stránku</div>
+                <VybaveRow IsInEditMode=true Vyb="newModel"
+                    EditDoneCallback="() => novaVybava(newModel)"> 
+    
+                    <div class="grid grid-cols-2 p-1">
+                        <button type="submit" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full">Přidat</button>
+                        <button type="button" @onclick="() => isInNewMode = false" class=" text-white bg-gradient-to-b from-cyan-300 to-sky-800 px-5 rounded-full">Odebrat</button>
+                    </div>
+                </VybaveRow>
+    }
+    
+    @foreach (var vyb in SeznamVybaveni)
+    {
+            <VybaveRow  IsInEditMode=false Vyb="vyb"
+                SmazEventCallback="() => DeleteVybaveni(vyb)"
+                RevizeEventCallBack="async () => {vyb.LastRevision = DateTime.Now; await PutVybaveni(vyb);}"
+                EditDoneCallback="async () => await PutVybaveni(vyb)">
             </VybaveRow>
+    }
 }
-
-@foreach (var vyb in SeznamVybaveni)
-{
-        <VybaveRow Vyb="vyb"
-            SmazEventCallback="() => DeleteVybaveni(vyb)"
-            RevizeEventCallBack="() => vyb.LastRevision = DateTime.Now">
-        </VybaveRow>
-}
-
 
 @code {
-    List<VybaveniVM> SeznamVybaveni = new List<VybaveniVM>();
-    VybaveniVM newModel = new VybaveniVM();
+    List<VybaveniVM>? SeznamVybaveni;
+    VybaveniVM? newModel;
     bool isInNewMode;
 
-    public void noveVybaveniSeznam()
-    {
-        SeznamVybaveni.Clear();
-        SeznamVybaveni = VybaveniVM.VratRandSeznam();
-    }
 
     protected override async Task OnInitializedAsync()
     {
-        SeznamVybaveni = await Http.GetFromJsonAsync<List<VybaveniVM>>("vybaveni");
-
-
         await Task.Delay(1000);
-        //SeznamVybaveni.Clear();
-        //SeznamVybaveni = VybaveniVM.VratRandSeznam();
-
-
+        SeznamVybaveni = await Http.GetFromJsonAsync<List<VybaveniVM>>("/vybaveni");
     }
 
-    public async void DeleteVybaveni(VybaveniVM vyb)
+    public async Task DeleteVybaveni(VybaveniVM vyb)
+    {
+        var odpoved = await Http.DeleteAsync($"vybaveni/{vyb.Id}");
+        if (odpoved.IsSuccessStatusCode && SeznamVybaveni != null)
+            SeznamVybaveni.Remove(vyb);
+    }
+
+    public async Task PutVybaveni(VybaveniVM? vyb)
+    {
+        if (vyb != null)
+        {
+           var response = await Http.PutAsJsonAsync($"vybaveni/{vyb.Id}", vyb); 
+        }
+        
+    }
+
+    public async Task novaVybava(VybaveniVM newEquipment)
     {
 
+        var response = await Http.PostAsJsonAsync<VybaveniVM>("vybaveni", newEquipment);
 
+        if (response.IsSuccessStatusCode)
+        {
 
+            VybaveniVM? equip = await response.Content.ReadFromJsonAsync<VybaveniVM>();
 
-        var odpoved = await Http.DeleteAsync($"vybaveni/{vyb.Id}");
-        if (odpoved.IsSuccessStatusCode)
-            SeznamVybaveni.Remove(vyb);
+            if (equip != null && SeznamVybaveni != null)
+            {
+                newEquipment.Id = equip.Id;
+                equip.LastRevision = DateTime.Now;
+                SeznamVybaveni.Insert(0, newEquipment);
+                isInNewMode = false;
 
+            }
+        }
     }
 
     

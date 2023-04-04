@@ -1,0 +1,28 @@
+﻿@page "/vybaveni/{Id:guid}"
+@inject HttpClient Http
+
+@if (vybaveniVM is null)
+{
+            <div class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+                <div class=" border-t-transparent border-solid animate-spin  rounded-full border-cyan-600 border-8 h-16 w-16"></div>
+            </div>
+    return;
+}
+
+<div class="text-xl" >VybaveniDetail: @vybaveniVM.Id</div>
+
+<div class="grid grid-cols-2"> 
+<div>Název</div>
+<div>@vybaveniVM.Name</div>
+</div>
+
+@code {
+    VybaveniVM? vybaveniVM;
+    [Parameter] public Guid Id { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+        vybaveniVM = await Http.GetFromJsonAsync<VybaveniVM>($"/vybaveni/{Id}");
+    }
+
+}
