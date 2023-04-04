@@ -27,7 +27,6 @@ else{
     @if (isInNewMode)
     {
         ArgumentNullException.ThrowIfNull(newModel);
-                <div>Aby se přidalo nové vybavení je nutno po přidání refreshovat stránku</div>
                 <VybaveRow IsInEditMode=true Vyb="newModel"
                     EditDoneCallback="() => novaVybava(newModel)"> 
     
@@ -71,9 +70,9 @@ else{
     {
         if (vyb != null)
         {
-           var response = await Http.PutAsJsonAsync($"vybaveni/{vyb.Id}", vyb); 
+            var response = await Http.PutAsJsonAsync($"vybaveni/{vyb.Id}", vyb); 
         }
-        
+
     }
 
     public async Task novaVybava(VybaveniVM newEquipment)
@@ -81,19 +80,11 @@ else{
 
         var response = await Http.PostAsJsonAsync<VybaveniVM>("vybaveni", newEquipment);
 
-        if (response.IsSuccessStatusCode)
+        if(SeznamVybaveni != null)
         {
-
-            VybaveniVM? equip = await response.Content.ReadFromJsonAsync<VybaveniVM>();
-
-            if (equip != null && SeznamVybaveni != null)
-            {
-                newEquipment.Id = equip.Id;
-                equip.LastRevision = DateTime.Now;
-                SeznamVybaveni.Insert(0, newEquipment);
-                isInNewMode = false;
-
-            }
+            SeznamVybaveni = await Http.GetFromJsonAsync<List<VybaveniVM>>("/vybaveni");
+            isInNewMode = false;
+            
         }
     }
 

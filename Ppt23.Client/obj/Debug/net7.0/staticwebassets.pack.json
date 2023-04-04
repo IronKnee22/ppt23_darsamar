@@ -1,27 +1,27 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt23.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "Id": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\bin\\Debug\\net7.0\\wwwroot\\_framework\\blazor.webassembly.js",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt23.Client\\obj\\Debug\\net7.0\\build-gz\\iws3c1M6.gz",
+      "Id": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\obj\\Debug\\net7.0\\build-gz\\mjSiJjSj.gz",
       "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt23.Client\\wwwroot\\106372219.ico",
+      "Id": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\wwwroot\\106372219.ico",
       "PackagePath": "staticwebassets\\106372219.ico"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt23.Client\\wwwroot\\css\\app.css",
+      "Id": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt23.Client\\wwwroot\\index.html",
+      "Id": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt23.Client\\wwwroot\\logo.png",
+      "Id": "C:\\Users\\marek\\Documents\\ppt23_darsamar\\Ppt23.Client\\wwwroot\\logo.png",
       "PackagePath": "staticwebassets\\logo.png"
     },
     {
