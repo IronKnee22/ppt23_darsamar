@@ -1,22 +1,38 @@
-﻿@page "/revize"
-
+﻿@page "/revize/{Pozdrav}"
+@using Ppt.Shared;
 @inject HttpClient Http
-<div>ahoj</div>
-@*<div class="text-green-600">@routeParam</div>*@
 
+<h3 class="text-green-500">@Pozdrav</h3>
 
-<input type="text" @bind-value="inputValue" @bind-value:event="oninput" />
+<input class="border     px-2 py-1 mx-2 rounded" @bind-value="@input"/>
+<button @onclick="()=> VyhledejRevize()" class="bg-teal-500 px-2 py-1 hover:bg-opacity-80">Vyhledej</button>
 
-<button @onclick="vyhledat">Vyhledat</button>
+@if (seznamRevizi is not null)
+{
+    <div class="grid grid-cols-2">
 
+        @foreach (var rev in seznamRevizi)
+        {
+                <div>
+                Id: @rev.Id  
+                </div>
+                <div>
+                        Nazev: @rev.Name
+                    </div>
+        }
+    </div>
+}
 @code {
-    [Parameter]
-    public string routeParam { get; set; }
 
-    private string? inputValue { get; set; }
+    [Parameter] public string Pozdrav { get; set; } = "";
+    string input = "";
+    List<RevizeVM>? seznamRevizi;
 
-    private void vyhledat()
+
+    async Task VyhledejRevize()
     {
+        seznamRevizi = await Http.GetFromJsonAsync<List<RevizeVM>>($"revize/{input}");
 
     }
+
 }

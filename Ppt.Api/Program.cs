@@ -1,5 +1,6 @@
-﻿using Ppt.Shered.ViewModels;
-using System.Linq;
+﻿using Ppt.Shared;
+using Ppt.Shered.ViewModels;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 List<VybaveniVM> SeznamVybaveni = VybaveniVM.VratRandSeznam();  //základní gerenování seznamu
+List<RevizeVM> SeznamRevizi = RevizeVM.VratRandSeznam(100);
 
 app.MapGet("/vybaveni", () =>
 {
@@ -70,18 +72,10 @@ app.MapGet("/vybaveni/{Id}", (Guid Id) =>   /*Pomocí ID získán jedno vybaven�
     return nalezeny;
 });
 
-app.MapGet("/search/{con}", (string con) =>   /*Pomocí ID získán jedno vybavení*/
+app.MapGet("/revize/{text}", (string text) =>
 {
-    List<VybaveniVM?> nalezeny = new List<VybaveniVM?>();
-    foreach (var item in SeznamVybaveni)
-    {
-        if (item.Name.Contains(con))
-        {
-            nalezeny.Add(item);
-        }
-
-    }
-    return nalezeny;
+    var filtrovaneRevize = SeznamRevizi.Where(x => x.Name.Contains(text)).ToList();
+    return Results.Ok(filtrovaneRevize);
 });
 
 app.Run();
