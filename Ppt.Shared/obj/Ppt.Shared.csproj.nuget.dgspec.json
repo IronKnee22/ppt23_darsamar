@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {}
+    "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
+    "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
         "projectName": "Ppt.Shared",
-        "projectPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\obj\\",
+        "projectPath": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
+        "packagesPath": "C:\\Users\\MarekDarsaU\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MarekDarsaU\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -34,3 +34,15 @@ C:\Users\PC\Documents\Programovaní\c#\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.
 C:\Users\PC\Documents\Programovaní\c#\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\refint\Ppt.Shared.dll
 C:\Users\PC\Documents\Programovaní\c#\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.pdb
 C:\Users\PC\Documents\Programovaní\c#\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\ref\Ppt.Shared.dll
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\bin\Debug\net7.0\Ppt.Shared.deps.json
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\bin\Debug\net7.0\Ppt.Shared.dll
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\bin\Debug\net7.0\Ppt.Shared.pdb
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.csproj.AssemblyReference.cache
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.AssemblyInfoInputs.cache
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.AssemblyInfo.cs
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.csproj.CoreCompileInputs.cache
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.dll
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\refint\Ppt.Shared.dll
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\Ppt.Shared.pdb
+C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt.Shared\obj\Debug\net7.0\ref\Ppt.Shared.dll

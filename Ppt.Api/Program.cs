@@ -1,5 +1,9 @@
-﻿using Ppt.Shared;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
+using Ppt.Api.Data;
+using Ppt.Shared;
 using Ppt.Shered.ViewModels;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +17,8 @@ builder.Services.AddCors(corsOptions => corsOptions.AddDefaultPolicy(policy =>
     .AllowAnyHeader()
 ));
 
+builder.Services.AddDbContext<PptDbContext>(opt => opt.UseSqlite("FileName=MojeDatabaze.db"));
+
 var app = builder.Build();
 app.UseCors();
 
@@ -23,59 +29,75 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-List<VybaveniVM> SeznamVybaveni = VybaveniVM.VratRandSeznam();  //základní gerenování seznamu
-List<RevizeVM> SeznamRevizi = RevizeVM.VratRandSeznam(100);
 
-app.MapGet("/vybaveni", () =>
+
+app.MapGet("/vybaveni", ( PptDbContext db) =>
 {
-    return SeznamVybaveni;
+    Console.WriteLine(  $"Pocet vybavani v db: {db.Vybavenis.Count()}");
+    db.Vybavenis.Select(x=>x.Adapt<VybaveniVM>()).ToList();
+    return db.Vybavenis;
+    
 });
 
-app.MapPost("/vybaveni", (VybaveniVM prichoziModel) => /*nové vybavení*/
+app.MapPost("/vybaveni", (VybaveniVM prichoziModel, PptDbContext db) => /*nové vybavení*/
 {
-    prichoziModel.Id = Guid.NewGuid();
-    SeznamVybaveni.Insert(0, prichoziModel);
+
+
+    prichoziModel.Id = Guid.Empty;
+
+    var en = prichoziModel.Adapt<Vybaveni>();
+
+    //přidat do db.Vybavenis
+
+    db.Vybavenis.Add(en);
+    //uložit db (db.Save)
+
+    db.SaveChanges();
+
+    return en.Id;
 });
 
-app.MapDelete("/vybaveni/{Id}", (Guid Id) =>    /*smazání vybavení*/
+app.MapDelete("/vybaveni/{Id}", (Guid Id, PptDbContext db) =>    /*smazání vybavení*/
 {
-    var vybranyModel = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
+    var vybranyModel = db.Vybavenis.SingleOrDefault(x => x.Id == Id);
     if (vybranyModel == null)
         return Results.NotFound("Položka nalezena");
-    SeznamVybaveni.Remove(vybranyModel);
+    db.Vybavenis.Remove(vybranyModel);
+    db.SaveChanges();
+
     return Results.Ok();
 }
 );
 
-app.MapPut("/vybaveni/{Id}", (VybaveniVM upravenyModel, Guid Id) => /*update vybavení*/
+app.MapPut("/vybaveni/{Id}", (Vybaveni vyb, Guid Id, PptDbContext db) => /*update vybavení*/
 {
-    var vybranyModel = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
+    var vybranyModel = db.Vybavenis.SingleOrDefault(x => x.Id == Id);
     if (vybranyModel == null)
     {
         return Results.NotFound("Položka nalezena");
     }
 
     else
-    { 
-        int index = SeznamVybaveni.IndexOf(vybranyModel);
-
-        SeznamVybaveni.Remove(vybranyModel);
-        SeznamVybaveni.Insert(index, upravenyModel);
-
-        return Results.Ok(upravenyModel);
+    {
+        vyb.Id = Id;
+        db.Vybavenis.Entry(vybranyModel).CurrentValues.SetValues(vyb);
+        db.SaveChanges();
+        return Results.Ok();
     }
 });
 
-app.MapGet("/vybaveni/{Id}", (Guid Id) =>   /*Pomocí ID získán jedno vybavení*/
+app.MapGet("/vybaveni/{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získán jedno vybavení*/
 {
-    VybaveniVM? nalezeny = SeznamVybaveni.SingleOrDefault(x => x.Id == Id);
+    var nalezeny = db.Vybavenis.SingleOrDefault(x => x.Id == Id);
     return nalezeny;
 });
 
-app.MapGet("/revize/{text}", (string text) =>
+app.MapGet("/revize/{text}", (string text, PptDbContext db ) => /*Bylo přidáno Ahoj jako testovaci*/
 {
-    var filtrovaneRevize = SeznamRevizi.Where(x => x.Name.Contains(text)).ToList();
-    return Results.Ok(filtrovaneRevize);
+    var Revize = db.Revizes.ToList();
+    var odpovidajiciRevize = Revize.Where(r => r.Name.Contains(text)).Adapt<List<RevizeVM>>();
+    return odpovidajiciRevize;
+   
 });
 
 app.Run();
