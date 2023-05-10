@@ -16,11 +16,14 @@ builder.Services.AddCors(corsOptions => corsOptions.AddDefaultPolicy(policy =>
     .WithMethods("GET","DELETE","PUT","POST") /*použité endpoity*/
     .AllowAnyHeader()
 ));
+string path = builder.Configuration.GetValue<string>("dbPath");
 
-builder.Services.AddDbContext<PptDbContext>(opt => opt.UseSqlite("FileName=MojeDatabaze.db"));
+builder.Services.AddDbContext<PptDbContext>(opt => opt.UseSqlite($"FileName={path}"));
 
 var app = builder.Build();
 app.UseCors();
+
+app.Services.CreateScope().ServiceProvider.GetRequiredService<PptDbContext>().Database.Migrate();
 
 if (app.Environment.IsDevelopment())
 {
