@@ -22,8 +22,7 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
       
-      - name: Build with dotnet
-        run: dotnet build Ppt.Api/Ppt.Api.csproj --configuration Release
+     
         
       - name: Build with dotnet
         run: dotnet build --configuration Release
