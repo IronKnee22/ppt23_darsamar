@@ -7,18 +7,22 @@ using Ppt.Shered.ViewModels;
 
 
 var builder = WebApplication.CreateBuilder(args);
+var corsAllowedOrigin = builder.Configuration.GetSection("CorsAllowedOrigins").Get<string[]>();
+
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(corsOptions => corsOptions.AddDefaultPolicy(policy =>
-    policy.WithOrigins(builder.Configuration["AllowedOrigins"])
-    .WithMethods("GET","DELETE","PUT","POST") /*použité endpoity*/
+    policy.WithOrigins(corsAllowedOrigin)//👈
+    .WithMethods("GET", "DELETE", "POST", "PUT")//👈 (musí být UPPERCASE)
     .AllowAnyHeader()
 ));
-string path = builder.Configuration.GetValue<string>("dbPath");
 
-builder.Services.AddDbContext<PptDbContext>(opt => opt.UseSqlite($"FileName={path}"));
+string? sqliteDbPath = builder.Configuration[nameof(sqliteDbPath)];
+
+builder.Services.AddDbContext<PptDbContext>(opt => opt.UseSqlite($"FileName={sqliteDbPath}"));
 
 var app = builder.Build();
 app.UseCors();

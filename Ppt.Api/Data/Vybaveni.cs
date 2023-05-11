@@ -15,7 +15,6 @@ namespace Ppt.Api.Data
 
         public DateTime BuyDate { get; set; }
 
-
         public DateTime LastRevision { get; set; }
 
         public int Cena { get; set; }
