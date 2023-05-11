@@ -5,11 +5,8 @@ using Ppt.Shared;
 using Ppt.Shered.ViewModels;
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 var corsAllowedOrigin = builder.Configuration.GetSection("CorsAllowedOrigins").Get<string[]>();
-
-
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
