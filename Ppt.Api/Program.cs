@@ -10,6 +10,9 @@ var corsAllowedOrigin = builder.Configuration.GetSection("CorsAllowedOrigins").G
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<SeedingData>();
+
+
 
 builder.Services.AddCors(corsOptions => corsOptions.AddDefaultPolicy(policy =>
     policy.WithOrigins(corsAllowedOrigin)//👈
@@ -103,6 +106,8 @@ app.MapGet("/revize/{text}", (string text, PptDbContext db ) => /*Bylo přidáno
     return odpovidajiciRevize;
    
 });
+
+await app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingData>().SeedData();
 
 app.Run();
 
