@@ -23,11 +23,19 @@ namespace Ppt.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid>("VybaveniId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("VybaveniId");
 
                     b.ToTable("Revizes");
                 });
@@ -44,9 +52,6 @@ namespace Ppt.Api.Migrations
                     b.Property<int>("Cena")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("LastRevision")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -54,6 +59,22 @@ namespace Ppt.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vybavenis");
+                });
+
+            modelBuilder.Entity("Ppt.Api.Data.Revize", b =>
+                {
+                    b.HasOne("Ppt.Api.Data.Vybaveni", "Vybaveni")
+                        .WithMany("Revizes")
+                        .HasForeignKey("VybaveniId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vybaveni");
+                });
+
+            modelBuilder.Entity("Ppt.Api.Data.Vybaveni", b =>
+                {
+                    b.Navigation("Revizes");
                 });
 #pragma warning restore 612, 618
         }

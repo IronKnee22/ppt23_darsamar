@@ -1,26 +1,24 @@
-﻿@page "/revize/{Pozdrav}"
+﻿@page "/revize"
 @using Ppt.Shared;
 @inject HttpClient Http
 
 <h3 class="text-green-500">@Pozdrav</h3>
 
-<input class="border     px-2 py-1 mx-2 rounded" @bind-value="@input"/>
-<button @onclick="()=> VyhledejRevize()" class="bg-teal-500 px-2 py-1 hover:bg-opacity-80">Vyhledej</button>
-
 @if (seznamRevizi is not null)
 {
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-4">
 
         @foreach (var rev in seznamRevizi)
         {
-                <div>
-                Id: @rev.Id  
-                </div>
-                <div>
-                        Nazev: @rev.Name
-                    </div>
+                <div>Id revize: @rev.Id  </div>
+                <div>Nazev: @rev.Name</div>
+                <div>Posledni revize: @rev.DateTime</div>
+                <div>Id Vybaveni: @rev.VybaveniId </div>
+
         }
     </div>
+}else{
+    <div>Nic tu není</div>
 }
 @code {
 
@@ -29,10 +27,9 @@
     List<RevizeVM>? seznamRevizi;
 
 
-    async Task VyhledejRevize()
+    protected override async Task OnInitializedAsync()
     {
-        seznamRevizi = await Http.GetFromJsonAsync<List<RevizeVM>>($"revize/{input}");
-
+        seznamRevizi = await Http.GetFromJsonAsync<List<RevizeVM>>($"revize");
     }
 
 }

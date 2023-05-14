@@ -27,7 +27,7 @@ namespace Ppt.Shered.ViewModels
             this.Name = "";
             Id = Guid.NewGuid();
             this.BuyDate = RandomDate(new DateTime(2002, 7, 15));
-            this.LastRevision = RandomDate(BuyDate);
+            //this.LastRevision = RandomDate(BuyDate); //tohle se musí dát aby se nám to generovalo v revizích
             this.Cena = Random.Shared.Next(10000000);
         }
 
@@ -73,7 +73,7 @@ namespace Ppt.Shered.ViewModels
             return ListVybaveni;
         }
 
-        public DateTime RandomDate(DateTime since)
+        public static DateTime RandomDate(DateTime since)
         {
             int between = (DateTime.Now - since).Days;
 

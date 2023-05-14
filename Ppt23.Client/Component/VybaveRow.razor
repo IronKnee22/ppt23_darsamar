@@ -32,7 +32,7 @@
                     <div class="grid grid-cols-6 my-1">
                     <div><InputText class="bg-green-100 border rounded" @bind-Value=@editingItem.Name /><ValidationMessage For="() => editingItem.Name" /></div>
                     <div><InputDate class="bg-blue-100 border rounded" @bind-Value=@editingItem.BuyDate /></div>
-                    <div><InputDate class="bg-blue-100 border rounded" @bind-Value=@editingItem.LastRevision /><ValidationMessage For="() => editingItem.LastRevision" /></div>
+                        <div><InputDate class="bg-blue-100 border rounded" @bind-Value=@editingItem.LastRevision /><ValidationMessage For="() => editingItem.LastRevision" /></div>
                     <div>@((editingItem.IsRevisionNeed) ? "ano" : "ne")</div>
                     <div><InputNumber class="bg-orange-100 border rounded" @bind-Value=@editingItem.Cena ParsingErrorMessage="Pole Cena musí něco obsahovat" /><ValidationMessage For="() => editingItem.Cena" /></div>
 
@@ -53,6 +53,14 @@
 </div>
 
 @code {
+
+    private DateTime randomDate;
+
+    private void SetRandomDate()
+    {
+        randomDate = VybaveniVM.RandomDate(editingItem.BuyDate);
+    }
+
     [Parameter] public EventCallback SmazEventCallback { get; set; }
     [Parameter] public EventCallback RevizeEventCallBack { get; set; }
     [Parameter] public EventCallback EditDoneCallback { get; set; }
@@ -84,6 +92,9 @@
         {
             IsInEditMode = true;
             editingItem = Vyb.Copy();
+            SetRandomDate();
+            editingItem.LastRevision = randomDate;
+
         }
     }
 
