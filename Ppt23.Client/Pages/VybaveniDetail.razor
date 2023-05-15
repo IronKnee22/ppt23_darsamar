@@ -1,4 +1,5 @@
 ﻿@page "/vybaveni/{Id:guid}"
+@using Ppt.Shared;
 @inject HttpClient Http
 
 @if (vybaveniVM is null)
@@ -9,20 +10,41 @@
     return;
 }
 
-<div class="grid grid-cols-2"> 
-<div class="text-xl" >VybaveniDetail: @vybaveniVM.Id</div>
+<div class="grid grid-row-6"> 
+    <div>VybaveniDetail: </div>
+    <div>Název: @vybaveniVM.Name</div>
+    <div>Vybaveni id: @vybaveniVM.Id</div>
+    <div>Revize k teré jsou známy k tomuto vybavení a jejich počet: @seznamRevizi.Count</div>
+    @if(seznamRevizi.Count != 0)
+    {
+        
+        @foreach (var item in seznamRevizi)
+        {
 
-<div>Název</div>
-<div>@vybaveniVM.Name</div>
+            <div>Revze číslo @pocetrevizi: @item.DateTime.ToString("dd/MM/yyyy")</div>
+            pocetrevizi++;
+        }
+    }
+    else
+    {
+        <div>žádná revize</div>
+    }
+
+
 </div>
 
 @code {
     VybaveniVM? vybaveniVM;
     [Parameter] public Guid Id { get; set; }
+    List<RevizeVM>? seznamRevizi;
+    int pocetrevizi = 1;
+
+
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(1000);
         vybaveniVM = await Http.GetFromJsonAsync<VybaveniVM>($"/vybaveni/{Id}");
+        seznamRevizi = await Http.GetFromJsonAsync<List<RevizeVM>>($"{vybaveniVM.Id}");
     }
 
 }

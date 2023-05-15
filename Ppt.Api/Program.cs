@@ -134,10 +134,18 @@ app.MapPut("/vybaveni/{Id}", (VybaveniVM vyb, Guid Id, PptDbContext db) => /*upd
     }
 });
 
-app.MapGet("/vybaveni/{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získán jedno vybavení*/
+app.MapGet("/vybaveni/{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získán jedno vybavení a všechno co kněmu patří*/
 {
     var nalezeny = db.Vybavenis.SingleOrDefault(x => x.Id == Id);
     return nalezeny;
+
+});
+
+app.MapGet("{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získáme z tabulky revizes všechny revize*/
+{
+    var nalezeny = db.Revizes.Where(r => r.VybaveniId == Id).ToList();
+    return nalezeny;
+
 });
 
 app.MapGet("/revize", ( PptDbContext db ) => 

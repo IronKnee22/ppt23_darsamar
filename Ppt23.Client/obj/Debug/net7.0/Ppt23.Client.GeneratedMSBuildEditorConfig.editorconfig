@@ -9,45 +9,45 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = Ppt23.Client
 build_property.RootNamespace = Ppt23.Client
-build_property.ProjectDir = C:\Users\PC\Documents\Programovaní\c#\ppt23_darsamar\Ppt23.Client\
+build_property.ProjectDir = C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt23.Client\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\PC\Documents\Programovaní\c#\ppt23_darsamar\Ppt23.Client
+build_property.MSBuildProjectDirectory = C:\Users\MarekDarsaU\Documents\Škola\4.Semestr\ppt23_darsamar\Ppt23.Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/App.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Component/VybaveRow.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/Component/VybaveRow.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50XFZ5YmF2ZVJvdy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/MainLayout.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/HadaniCisel.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/Pages/HadaniCisel.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGFkYW5pQ2lzZWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/Index.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/RevizePage.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/Pages/RevizePage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmV2aXplUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/VybaveniDetail.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/Pages/VybaveniDetail.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVnliYXZlbmlEZXRhaWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/VybaveniNemocnice.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/Pages/VybaveniNemocnice.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVnliYXZlbmlOZW1vY25pY2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/_Imports.razor]
+[C:/Users/MarekDarsaU/Documents/Škola/4.Semestr/ppt23_darsamar/Ppt23.Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
