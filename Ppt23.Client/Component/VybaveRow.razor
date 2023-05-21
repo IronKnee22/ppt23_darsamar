@@ -23,6 +23,8 @@
                 <button class="rounded bg-blue-600 p-2" @onclick="() => RevizeEventCallBack.InvokeAsync()">👨‍🔧</button>
                 <button class="rounded border-2 border-yellow-600 p-2" @onclick="() => TurnOnEdit()">🛠</button>
                 <a class="rounded border-2 border-blue-600 p-2" href="vybaveni/{@Vyb.Id}">ℹ️</a>
+                <button class="rounded border-2 border-green-600 p-2" @onclick="() => PouzitCallback.InvokeAsync()">Použít</button>
+
             </div>
     }
     else if (editingItem != null && IsInEditMode)
@@ -64,6 +66,7 @@
     [Parameter] public EventCallback SmazEventCallback { get; set; }
     [Parameter] public EventCallback RevizeEventCallBack { get; set; }
     [Parameter] public EventCallback EditDoneCallback { get; set; }
+    [Parameter] public EventCallback PouzitCallback { get; set; }
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
 

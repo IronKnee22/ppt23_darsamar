@@ -16,15 +16,6 @@ namespace Ppt.Api.Data
 
         public async Task SeedData()
         {
-            if (!_db.VybaveniUkonys.Any())
-            {
-                _db.VybaveniUkonys.Add(new UkonVybaveniVM { Name = "Rentgen"}.Adapt<VybaveniUkony>());
-                _db.VybaveniUkonys.Add(new UkonVybaveniVM { Name = "Magnetická rezonance" }.Adapt<VybaveniUkony>());
-                _db.VybaveniUkonys.Add(new UkonVybaveniVM { Name = "CT" }.Adapt<VybaveniUkony>());
-                _db.VybaveniUkonys.Add(new UkonVybaveniVM { Name = "Laser" }.Adapt<VybaveniUkony>());
-            }
-
-
             if (!_db.Vybavenis.Any())
             {
                 for (int i = 0; i < 5; i++)
@@ -37,7 +28,7 @@ namespace Ppt.Api.Data
                     
                 }
                 _db.SaveChanges();
-                foreach (var item in _db.Vybavenis) //tady je nějaký problém ale nevím proč
+                foreach (var item in _db.Vybavenis) 
                 {
                     var novaRevize = new Revize
                     {

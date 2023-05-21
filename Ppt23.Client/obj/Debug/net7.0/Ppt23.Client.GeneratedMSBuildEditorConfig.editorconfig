@@ -40,20 +40,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmV2aXplUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/UkonVybaveniDetail.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWtvblZ5YmF2ZW5pRGV0YWlsLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/VybaveniDetail.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVnliYXZlbmlEZXRhaWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/VybaveniNemocnice.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVnliYXZlbmlOZW1vY25pY2UucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/Pages/VybaveniUkon.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVnliYXZlbmlVa29uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/PC/Documents/Programovaní/c\#/ppt23_darsamar/Ppt23.Client/_Imports.razor]

@@ -11,18 +11,31 @@
 }
 
 <div class="grid grid-row-6"> 
-    <div>VybaveniDetail: </div>
+    <div><font size="+2">VybaveniDetail: </font></div>
     <div>Název: @vybaveniVM.Name</div>
     <div>Vybaveni id: @vybaveniVM.Id</div>
-    <div>Revize k teré jsou známy k tomuto vybavení a jejich počet: @seznamRevizi.Count</div>
+    <br/>
+    <div><font size="+2">Revize k teré jsou známy k tomuto vybavení a jejich počet: @seznamRevizi.Count </font></div>
     @if(seznamRevizi.Count != 0)
     {
         
         @foreach (var item in seznamRevizi)
         {
 
-            <div>Revze číslo @pocetrevizi: @item.DateTime.ToString("dd/MM/yyyy")</div>
+            <div>Revize číslo @pocetrevizi: @item.DateTime.ToString("dd/MM/yyyy")</div>
             pocetrevizi++;
+        }
+
+        <br/>
+            <div><font size="+2">Pocet pouziti tohoto přístroje je @seznamUkonu.Count </font></div>
+
+        @foreach (var item in seznamUkonu)
+        {
+            
+             <div class="grid grid-cols-2">
+                <div>Název procedury: @item.Name </div> 
+                <div>Kdy byla provedena @item.RxecutionDate</div>
+            </div>
         }
     }
     else
@@ -37,6 +50,7 @@
     VybaveniVM? vybaveniVM;
     [Parameter] public Guid Id { get; set; }
     List<RevizeVM>? seznamRevizi;
+    List<UkonyVM>? seznamUkonu;
     int pocetrevizi = 1;
 
 
@@ -45,6 +59,7 @@
         await Task.Delay(1000);
         vybaveniVM = await Http.GetFromJsonAsync<VybaveniVM>($"/vybaveni/{Id}");
         seznamRevizi = await Http.GetFromJsonAsync<List<RevizeVM>>($"/vybaveniinfo/{vybaveniVM.Id}");
+        seznamUkonu = await Http.GetFromJsonAsync<List<UkonyVM>>($"/Ukunyinfo/{vybaveniVM.Id}");
     }
 
 }
