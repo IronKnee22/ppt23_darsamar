@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj": {}
+    "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj": {
+    "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
         "projectName": "Ppt.Api",
-        "projectPath": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
-        "packagesPath": "C:\\Users\\MarekDarsaU\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Api\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\Ppt.Api.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\MarekDarsaU\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
-                "projectPath": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj"
+              "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
+                "projectPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj"
               }
             }
           }
@@ -90,21 +90,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
+    "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
         "projectName": "Ppt.Shared",
-        "projectPath": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
-        "packagesPath": "C:\\Users\\MarekDarsaU\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MarekDarsaU\\Documents\\Škola\\4.Semestr\\ppt23_darsamar\\Ppt.Shared\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\Ppt.Shared.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\Programovaní\\c#\\ppt23_darsamar\\Ppt.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\MarekDarsaU\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -145,7 +145,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

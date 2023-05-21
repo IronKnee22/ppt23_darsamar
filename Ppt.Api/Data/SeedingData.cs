@@ -16,6 +16,11 @@ namespace Ppt.Api.Data
 
         public async Task SeedData()
         {
+            if (!_db.VybaveniUkonys.Any())
+            {
+                var vybUkon = new UkonVybaveniVM();
+                
+            }
             
             
             if (!_db.Vybavenis.Any())
