@@ -44,7 +44,7 @@
     {
         await Task.Delay(1000);
         vybaveniVM = await Http.GetFromJsonAsync<VybaveniVM>($"/vybaveni/{Id}");
-        seznamRevizi = await Http.GetFromJsonAsync<List<RevizeVM>>($"{vybaveniVM.Id}");
+        seznamRevizi = await Http.GetFromJsonAsync<List<RevizeVM>>($"/vybaveniinfo/{vybaveniVM.Id}");
     }
 
 }

@@ -18,11 +18,13 @@ namespace Ppt.Api.Data
         {
             if (!_db.VybaveniUkonys.Any())
             {
-                var vybUkon = new UkonVybaveniVM();
-                
+                _db.VybaveniUkonys.Add(new UkonVybaveniVM { Name = "Rentgen"}.Adapt<VybaveniUkony>());
+                _db.VybaveniUkonys.Add(new UkonVybaveniVM { Name = "Magnetická rezonance" }.Adapt<VybaveniUkony>());
+                _db.VybaveniUkonys.Add(new UkonVybaveniVM { Name = "CT" }.Adapt<VybaveniUkony>());
+                _db.VybaveniUkonys.Add(new UkonVybaveniVM { Name = "Laser" }.Adapt<VybaveniUkony>());
             }
-            
-            
+
+
             if (!_db.Vybavenis.Any())
             {
                 for (int i = 0; i < 5; i++)

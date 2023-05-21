@@ -141,12 +141,21 @@ app.MapGet("/vybaveni/{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získ�
 
 });
 
-app.MapGet("{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získáme z tabulky revizes všechny revize*/
+app.MapGet("/vybaveniinfo/{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získáme z tabulky revizes všechny revize*/
 {
     var nalezeny = db.Revizes.Where(r => r.VybaveniId == Id).ToList();
     return nalezeny;
 
 });
+
+app.MapGet("/ukonyinfo/{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získáme z tabulky revizes všechny revize*/
+{
+    var nalezeny = db.Ukonys.Where(r => r.VybaveniUkonyId == Id).ToList();
+    return nalezeny;
+
+});
+
+
 
 app.MapGet("/revize", ( PptDbContext db ) => 
 {
@@ -154,6 +163,41 @@ app.MapGet("/revize", ( PptDbContext db ) =>
     
     return Revize;
    
+});
+
+app.MapGet("/ukon", (PptDbContext db) =>
+{
+    var UkonVybaveni = db.VybaveniUkonys.ToList();
+
+    return UkonVybaveni;
+});
+
+app.MapGet("/ukon/{Id}", (Guid Id, PptDbContext db) =>   /*Pomocí ID získán jedno vybavení a všechno co kněmu patří*/
+{
+    var nalezeny = db.VybaveniUkonys.SingleOrDefault(x => x.Id == Id);
+    return nalezeny;
+
+});
+
+app.MapPost("/ukon/{Id}", (Guid id,UkonVybaveniVM prichoziModel, PptDbContext db) => /*Nové vybavení*/
+{
+
+
+    var en = prichoziModel.Adapt<Ukony>();
+
+    
+
+    prichoziModel.Id = Guid.Empty;
+    en.VybaveniUkonyId = id;
+    
+
+    db.Ukonys.Add(en);
+    db.SaveChanges();
+
+    
+
+
+    return en.Id;
 });
 
 await app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingData>().SeedData();
