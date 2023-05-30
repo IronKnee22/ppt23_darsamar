@@ -43,8 +43,7 @@ else{
             <VybaveRow  IsInEditMode=false Vyb="vyb"
                 SmazEventCallback="() => DeleteVybaveni(vyb)"
                 RevizeEventCallBack="async () => {vyb.LastRevision = DateTime.Now; await PutVybaveni(vyb);}"
-                EditDoneCallback="async () => await PutVybaveni(vyb)"
-                PouzitCallback="async () => await PostUkon(vyb)">
+                EditDoneCallback="async () => await PutVybaveni(vyb)">
             </VybaveRow>
     }
 }
@@ -52,7 +51,7 @@ else{
 @code {
     List<VybaveniVM>? SeznamVybaveni;
     VybaveniVM? newModel;
-    UkonyVM ukonyVM;
+    
     bool isInNewMode;
 
 
@@ -62,16 +61,7 @@ else{
         SeznamVybaveni = await Http.GetFromJsonAsync<List<VybaveniVM>>("/vybaveni");
     }
 
-    public async Task PostUkon(VybaveniVM vyb)
-    {
-        var id = vyb.Id;
-        ukonyVM = new UkonyVM
-        {
-            Name  = VybaveniVM.RandomName(),
-            RxecutionDate = DateTime.Now
-        };
-        var response = await Http.PostAsJsonAsync<UkonyVM>($"vybaveniUkon/{id}",ukonyVM); 
-    }
+    
 
     public async Task DeleteVybaveni(VybaveniVM vyb)
     {

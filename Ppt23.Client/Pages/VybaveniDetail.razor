@@ -26,8 +26,32 @@
             pocetrevizi++;
         }
 
+        pocetrevizi = 1;
+
         <br/>
             <div><font size="+2">Pocet pouziti tohoto přístroje je @seznamUkonu.Count </font></div>
+
+        <button class="rounded border-2 border-green-600 p-2" @onclick="() => NovyUkon()">Použít</button>
+
+        @if(ukon==true)
+        {
+            <div class="grid grid-cols-4">
+
+                <input @bind-value="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"  />
+
+                @(ukonyVM.Name = name)
+                @(name = default)
+                @(ukonyVM.RxecutionDate = DateTime.Now)
+                <button @onclick="() =>PostUkon(vybaveniVM)" class=" bg-amber-500 twbtn">
+                    Ok
+                </button>
+                <button @onclick="() => ukon = false" class="bg-gray-500 twbtn">
+                    zruš
+                </button>
+            </div>
+            
+        }
+
 
         @foreach (var item in seznamUkonu)
         {
@@ -51,7 +75,10 @@
     [Parameter] public Guid Id { get; set; }
     List<RevizeVM>? seznamRevizi;
     List<UkonyVM>? seznamUkonu;
+    UkonyVM ukonyVM = new UkonyVM();
     int pocetrevizi = 1;
+    string name = default;
+    bool ukon = false;
 
 
     protected override async Task OnInitializedAsync()
@@ -60,6 +87,24 @@
         vybaveniVM = await Http.GetFromJsonAsync<VybaveniVM>($"/vybaveni/{Id}");
         seznamRevizi = await Http.GetFromJsonAsync<List<RevizeVM>>($"/vybaveniinfo/{vybaveniVM.Id}");
         seznamUkonu = await Http.GetFromJsonAsync<List<UkonyVM>>($"/Ukunyinfo/{vybaveniVM.Id}");
+    }
+
+    public void NovyUkon()
+    {
+        ukon = true;
+    }
+
+    public async Task PostUkon(VybaveniVM vyb)
+    {
+        ukon = false;
+        
+
+        var id = vyb.Id;
+        
+        var response = await Http.PostAsJsonAsync<UkonyVM>($"vybaveniUkon/{id}", ukonyVM);
+        seznamUkonu.Clear();
+        seznamUkonu = await Http.GetFromJsonAsync<List<UkonyVM>>($"/Ukunyinfo/{vybaveniVM.Id}");
+
     }
 
 }
